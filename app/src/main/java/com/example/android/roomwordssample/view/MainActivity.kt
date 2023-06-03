@@ -9,11 +9,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.example.android.roomwordssample.R
 import com.example.android.roomwordssample.WordViewModel
 import com.example.android.roomwordssample.WordViewModelFactory
+import com.example.android.roomwordssample.WorkManager.PostNotesWorker
 import com.example.android.roomwordssample.model.Note
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,6 +44,13 @@ class MainActivity : AppCompatActivity() {
         wordViewModel.allWords.observe(owner = this) { words ->
             words.let { adapter.submitList(it) }
         }
+
+        val workRequest = PeriodicWorkRequest.Builder(
+            PostNotesWorker::class.java, 2, TimeUnit.HOURS
+        ).build()
+
+        WorkManager.getInstance(this).enqueue(workRequest)
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {

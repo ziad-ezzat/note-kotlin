@@ -11,5 +11,5 @@ class NoteApplication : Application() {
     val applicationScope = CoroutineScope(SupervisorJob())
 
     val database by lazy { NoteRoomDatabase.getDatabase(this, applicationScope) }
-    val repository by lazy { NoteRepository(database.wordDao()) }
+    val repository by lazy { NoteRepository(database.noteDao()) }
 }

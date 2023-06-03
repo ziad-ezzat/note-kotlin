@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 @Database(entities = [Note::class], version = 1)
 abstract class NoteRoomDatabase : RoomDatabase() {
 
-    abstract fun wordDao(): NoteDao
+    abstract fun noteDao(): NoteDao
 
     companion object {
         @Volatile
@@ -32,7 +32,6 @@ abstract class NoteRoomDatabase : RoomDatabase() {
                     .addCallback(WordDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
-                // return instance
                 instance
             }
         }
@@ -44,18 +43,10 @@ abstract class NoteRoomDatabase : RoomDatabase() {
                 super.onCreate(db)
                 INSTANCE?.let { database ->
                     scope.launch(Dispatchers.IO) {
-                        populateDatabase(database.wordDao())
+                        //populateDatabase(database.noteDao())
                     }
                 }
             }
-        }
-        suspend fun populateDatabase(noteDao: NoteDao) {
-            noteDao.deleteAll()
-
-            var note = Note("Hello")
-            noteDao.insert(note)
-            note = Note("World!")
-            noteDao.insert(note)
         }
     }
 }
