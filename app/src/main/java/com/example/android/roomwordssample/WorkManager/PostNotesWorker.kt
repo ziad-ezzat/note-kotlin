@@ -1,3 +1,4 @@
+// PostNotesWorker.kt
 package com.example.android.roomwordssample.WorkManager
 
 import android.app.NotificationChannel
@@ -15,6 +16,7 @@ import com.example.android.roomwordssample.model.NoteRoomDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,12 +27,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 class PostNotesWorker(appContext: Context, workerParams: WorkerParameters) :
     Worker(appContext, workerParams) {
 
-
     val retrofit = Retrofit.Builder()
         .baseUrl("https://test-13589-default-rtdb.firebaseio.com/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-
 
     var apiInterface: NoteService = retrofit.create(NoteService::class.java)
 
@@ -57,6 +57,7 @@ class PostNotesWorker(appContext: Context, workerParams: WorkerParameters) :
                                 showNotification("Post Failed 2", "Failed to post the note")
                             }
                         }
+
                         override fun onFailure(call: Call<Note>, t: Throwable) {
                             showNotification("Error 3", "Failed to make the network request")
                         }
@@ -74,6 +75,7 @@ class PostNotesWorker(appContext: Context, workerParams: WorkerParameters) :
                         showNotification("Post Failed 6", "Failed to post the note")
                     }
                 }
+
                 override fun onFailure(call: Call<Note>, t: Throwable) {
                     showNotification("Error 7", "Failed to make the network request")
                 }

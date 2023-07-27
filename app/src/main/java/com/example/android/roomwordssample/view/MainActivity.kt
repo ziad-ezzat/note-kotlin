@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import com.example.android.roomwordssample.R
-import com.example.android.roomwordssample.WordViewModel
-import com.example.android.roomwordssample.WordViewModelFactory
+import com.example.android.roomwordssample.viewmodel.WordViewModel
+import com.example.android.roomwordssample.viewmodel.WordViewModelFactory
 import com.example.android.roomwordssample.WorkManager.PostNotesWorker
 import com.example.android.roomwordssample.model.Note
 import com.google.android.material.floatingactionbutton.FloatingActionButton
