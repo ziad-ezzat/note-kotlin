@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     defaultConfig {
         applicationId "com.example.android.roomwordssample"
         minSdkVersion 20
@@ -42,6 +42,9 @@ dependencies {
 
     // Room components
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
+    implementation 'junit:junit:4.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 
@@ -60,10 +63,12 @@ dependencies {
 
     // Testing
     testImplementation "junit:junit:$rootProject.junitVersion"
+    //noinspection GradleDependency
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
     androidTestImplementation ("androidx.test.espresso:espresso-core:$rootProject.espressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    //noinspection GradleDependency
     androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
 
     //new
@@ -72,20 +77,22 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     // WorkManager
-    implementation 'androidx.work:work-runtime-ktx:2.7.0'
+    implementation 'androidx.work:work-runtime-ktx:2.8.1'
 
     // Dagger Hilt
     implementation 'com.google.dagger:hilt-android:2.40.5'
     kapt 'com.google.dagger:hilt-compiler:2.40.5'
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
-    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha03'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0'
 
 
     // Add necessary dependencies for testing
     testImplementation 'junit:junit:4.13.2'
     testImplementation "org.mockito:mockito-core:4.2.0"
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0'
     androidTestImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:core:1.4.0'
+    androidTestImplementation 'androidx.test:core:1.5.0'
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0"
+    testImplementation "io.mockk:mockk:1.12.0"
 
 }
