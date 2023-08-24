@@ -1,7 +1,12 @@
 <resources>
-    <string name="app_name">RoomNotesSample</string>
-    <string name="action_settings">Settings</string>
-    <string name="button_save">Save</string>
-    <string name="empty_not_saved">Notes not saved because it is empty.</string>
-    <string name="add_Note">Add Note</string>
+    <string name="app_name">Small Note</string>
+
+    <style name="Note_title">
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:background">@android:color/holo_orange_light</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
+    </style>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
